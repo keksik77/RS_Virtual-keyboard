@@ -8,6 +8,10 @@ let alt = false;
 let light = false;
 let flag = true;
 
+const about = document.createElement('span');
+about.className = 'about';
+document.body.appendChild(about);
+about.innerHTML = 'Смена языка Shift+Alt, OS "Windows10"';
 
 const textarea = document.createElement('textarea');
 textarea.className = 'textarea';
@@ -16,12 +20,6 @@ document.body.appendChild(textarea);
 const keyboard = document.createElement('div');
 keyboard.className = 'keyboard';
 document.body.appendChild(keyboard);
-
-const about = document.createElement('span');
-about.className = 'about';
-document.body.appendChild(about);
-about.innerHTML = 'Смена языка Shift+Alt, OS "Windows10"';
-
     
 for (let key in keys) {
   let elem = document.createElement('div');
@@ -210,6 +208,43 @@ function toUp(id) {
         alt = false;
     }
 }
+
+keyboard.onmousedown = function(event) {
+
+    let shiftX = event.clientX - keyboard.getBoundingClientRect().left;
+    let shiftY = event.clientY - keyboard.getBoundingClientRect().top;
+  
+    keyboard.style.position = 'absolute';
+    keyboard.style.zIndex = 1000;
+  
+    moveAt(event.pageX, event.pageY);
+
+    function moveAt(pageX, pageY) {
+        console.log("pageX",pageX - shiftX);
+        console.log("width",document.body.clientWidth);
+        
+        
+        if(((pageX - shiftX + keyboard.clientWidth) < window.innerWidth) && ((pageX- shiftX)>0)){
+            keyboard.style.left = pageX - shiftX + 'px';}
+        if(((pageY - shiftY + keyboard.clientHeight) < window.innerHeight) && ((pageY - shiftY)>0)){
+            keyboard.style.top = pageY - shiftY + 'px';}
+    }
+  
+    function onMouseMove(event) {
+      moveAt(event.pageX, event.pageY);
+    }
+  
+    document.addEventListener('mousemove', onMouseMove);
+  
+    keyboard.onmouseup = function() {
+      document.removeEventListener('mousemove', onMouseMove);
+      keyboard.onmouseup = null;
+    };
+  
+    keyboard.ondragstart = function() {
+    return false;
+  };
+};
 
 window.addEventListener('beforeunload', () => {
   localStorage.setItem('lang', lang);
