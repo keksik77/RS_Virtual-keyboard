@@ -1,0 +1,25 @@
+{
+  "name": "keyboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "keys.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "keksik77",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-vue": "^6.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keksik77/RS_Virtual-keyboard.git"
+  },
+  "bugs": {
+    "url": "https://github.com/keksik77/RS_Virtual-keyboard/issues"
+  },
+  "homepage": "https://github.com/keksik77/RS_Virtual-keyboard#readme"
+}
