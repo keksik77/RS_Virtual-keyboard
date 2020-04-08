@@ -220,9 +220,6 @@ keyboard.onmousedown = function(event) {
     moveAt(event.pageX, event.pageY);
 
     function moveAt(pageX, pageY) {
-        console.log("pageX",pageX - shiftX);
-        console.log("width",document.body.clientWidth);
-        
         
         if(((pageX - shiftX + keyboard.clientWidth) < window.innerWidth) && ((pageX- shiftX)>0)){
             keyboard.style.left = pageX - shiftX + 'px';}
