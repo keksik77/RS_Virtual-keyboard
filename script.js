@@ -116,7 +116,6 @@ function toDown(id) {
   
     if (id == 'CapsLock' && flag) {
         caps = !caps;
-        console.log(caps);
         index = Math.abs(index - 1);
         let count = 0;
         for (let key in keys) {
