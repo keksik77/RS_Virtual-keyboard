@@ -27,23 +27,23 @@ for (let key in keys) {
   elem.className = keys[key].class;
   elem.innerHTML = keys[key][lang][0];
   elem.addEventListener('mousedown', (e) => {
-    toDown(e.target.id);
     e.preventDefault();
+    toDown(e.target.id);
   });
   elem.addEventListener('mouseup',(e)=>{
-    toUp(e.target.id);
     e.preventDefault();
+    toUp(e.target.id);
   });
   keyboard.appendChild(elem);
 }
 
 document.addEventListener('keydown', (e) => {
-  toDown(e.code);
-  e.preventDefault();
+    e.preventDefault();
+    toDown(e.code);
 });
 document.addEventListener('keyup', (e) => {
-  toUp(e.code);
-  e.preventDefault();
+    e.preventDefault();
+    toUp(e.code);
 });
 
 function getCursorPosition(el){
