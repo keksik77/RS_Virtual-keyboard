@@ -21,30 +21,77 @@ const keyboard = document.createElement('div');
 keyboard.className = 'keyboard';
 document.body.appendChild(keyboard);
     
+
 for (let key in keys) {
   let elem = document.createElement('div');
   elem.id = key;
   elem.className = keys[key].class;
   elem.innerHTML = keys[key][lang][0];
-  elem.addEventListener('mousedown', (e) => {
-    e.preventDefault();
-    toDown(e.target.id);
-  });
-  elem.addEventListener('mouseup',(e)=>{
-    e.preventDefault();
-    toUp(e.target.id);
-  });
   keyboard.appendChild(elem);
 }
 
+keyboard.addEventListener('mousedown', (event) => {
+    KeyboardMove(event);
+    if(event.target != keyboard){
+        event.preventDefault();
+        toDown(event.target.id);
+    }
+});
+
+keyboard.addEventListener('mouseup',(e)=>{
+    if(e.target != keyboard){
+        e.preventDefault();
+        toUp(e.target.id);
+    }
+});
+
 document.addEventListener('keydown', (e) => {
-    e.preventDefault();
-    toDown(e.code);
+    if(Object.keys(keys).some(elem => elem === e.code)){
+        e.preventDefault();
+        toDown(e.code);
+    }
 });
+
 document.addEventListener('keyup', (e) => {
-    e.preventDefault();
-    toUp(e.code);
+    if(Object.keys(keys).some(elem => elem === e.code)){
+        e.preventDefault();
+        toUp(e.code);
+    }
 });
+
+function KeyboardMove(event){
+    
+    let shiftX = event.clientX - keyboard.getBoundingClientRect().left;
+    let shiftY = event.clientY - keyboard.getBoundingClientRect().top;
+  
+    keyboard.style.position = 'absolute';
+    keyboard.style.zIndex = 1000;
+  
+    moveAt(event.pageX, event.pageY);
+
+    function moveAt(pageX, pageY) {
+        
+        if(((pageX - shiftX + keyboard.clientWidth) < window.innerWidth) && ((pageX- shiftX)>0)){
+            keyboard.style.left = pageX - shiftX + 'px';}
+        if(((pageY - shiftY + keyboard.clientHeight) < window.innerHeight) && ((pageY - shiftY)>0)){
+            keyboard.style.top = pageY - shiftY + 'px';}
+    }
+  
+    function onMouseMove(event) {
+      moveAt(event.pageX, event.pageY);
+    }
+  
+    document.addEventListener('mousemove', onMouseMove);
+  
+    document.onmouseup = function() {
+      document.removeEventListener('mousemove', onMouseMove);
+      keyboard.onmouseup = null;
+    };
+  
+    keyboard.ondragstart = function() {
+    return false;
+  };
+}
 
 function getCursorPosition(el){
     let CaretPos = 0;
@@ -208,39 +255,6 @@ function toUp(id) {
     }
 }
 
-keyboard.onmousedown = function(event) {
-
-    let shiftX = event.clientX - keyboard.getBoundingClientRect().left;
-    let shiftY = event.clientY - keyboard.getBoundingClientRect().top;
-  
-    keyboard.style.position = 'absolute';
-    keyboard.style.zIndex = 1000;
-  
-    moveAt(event.pageX, event.pageY);
-
-    function moveAt(pageX, pageY) {
-        
-        if(((pageX - shiftX + keyboard.clientWidth) < window.innerWidth) && ((pageX- shiftX)>0)){
-            keyboard.style.left = pageX - shiftX + 'px';}
-        if(((pageY - shiftY + keyboard.clientHeight) < window.innerHeight) && ((pageY - shiftY)>0)){
-            keyboard.style.top = pageY - shiftY + 'px';}
-    }
-  
-    function onMouseMove(event) {
-      moveAt(event.pageX, event.pageY);
-    }
-  
-    document.addEventListener('mousemove', onMouseMove);
-  
-    keyboard.onmouseup = function() {
-      document.removeEventListener('mousemove', onMouseMove);
-      keyboard.onmouseup = null;
-    };
-  
-    keyboard.ondragstart = function() {
-    return false;
-  };
-};
 
 window.addEventListener('beforeunload', () => {
   localStorage.setItem('lang', lang);
