@@ -31,7 +31,9 @@ for (let key in keys) {
 }
 
 keyboard.addEventListener('mousedown', (event) => {
-    KeyboardMove(event);
+    if(!Object.keys(keys).some(elem => elem === event.target.id)){
+        KeyboardMove(event);
+    };
     if(event.target != keyboard){
         event.preventDefault();
         toDown(event.target.id);
@@ -78,7 +80,7 @@ function KeyboardMove(event){
     }
   
     function onMouseMove(event) {
-      moveAt(event.pageX, event.pageY);
+        moveAt(event.pageX, event.pageY);
     }
   
     document.addEventListener('mousemove', onMouseMove);
