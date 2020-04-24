@@ -48,12 +48,12 @@ document.addEventListener('keyup', (e) => {
 
 function getCursorPosition(el){
     let CaretPos = 0;
-    if ( document.selection ) {
+    if (document.selection) {
     el.focus ();
         let Sel = document.getSelection();
         Sel.moveStart ('character', -el.value.length);
         CaretPos = Sel.text.length;
-    } else if ( el.selectionStart || el.selectionStart == '0' ) {
+    } else if ( el.selectionStart || el.selectionStart === '0' ) {
         CaretPos = el.selectionStart;
     }
     return CaretPos;
@@ -63,7 +63,7 @@ function toDown(id) {
     textarea.focus();
   let elem = document.getElementById(id);
   elem.classList.add('active');
-  if (keys[id].inner == true) {
+  if (!!keys[id].inner) {
     let cursorPosition = getCursorPosition(textarea);
     textarea.value = `${textarea.value.substring(0,textarea.selectionStart)}${elem.innerText}${textarea.value.substring(textarea.selectionEnd)}`
     textarea.setSelectionRange(cursorPosition+1,cursorPosition+1);
@@ -114,7 +114,7 @@ function toDown(id) {
         break;
   }
   
-    if (id == 'CapsLock' && flag) {
+    if (id === 'CapsLock' && flag) {
         caps = !caps;
         index = Math.abs(index - 1);
         let count = 0;
@@ -127,13 +127,13 @@ function toDown(id) {
         flag = false;
     }else if(id === 'AltRight' || id === 'AltLeft'){
         alt = true;
-    }else if ( id === "MetaLeft" && light == false){
+    }else if ( id === "MetaLeft" && light === false){
         for (let key in keys) {
             let elem = document.getElementById(key);
             elem.classList.add('light');
         }
         light = true;
-    }else if(id ==="MetaLeft" && light == true){
+    }else if(id ==="MetaLeft" && light === true){
         for (let key in keys) {
             let elem = document.getElementById(key);
             elem.classList.remove('light');
@@ -165,7 +165,7 @@ function toDown(id) {
       }
     }
      if ((id === 'ShiftRight' || id === 'ShiftLeft') && alt){
-        lang = (lang == 'ru') ? 'en' : 'ru';
+        lang = (lang === 'ru') ? 'en' : 'ru';
         for (let key in keys) {
             let elem = document.getElementById(key);
             elem.innerHTML = keys[key][lang][index];
