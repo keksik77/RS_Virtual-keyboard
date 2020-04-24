@@ -47,10 +47,10 @@ document.addEventListener('keyup', (e) => {
 });
 
 function getCursorPosition(el){
-    var CaretPos = 0;
+    let CaretPos = 0;
     if ( document.selection ) {
     el.focus ();
-        var Sel = document.getSelection();
+        let Sel = document.getSelection();
         Sel.moveStart ('character', -el.value.length);
         CaretPos = Sel.text.length;
     } else if ( el.selectionStart || el.selectionStart == '0' ) {
@@ -64,29 +64,29 @@ function toDown(id) {
   let elem = document.getElementById(id);
   elem.classList.add('active');
   if (keys[id].inner == true) {
-    let a = getCursorPosition(textarea);
+    let cursorPosition = getCursorPosition(textarea);
     textarea.value = `${textarea.value.substring(0,textarea.selectionStart)}${elem.innerText}${textarea.value.substring(textarea.selectionEnd)}`
-    textarea.setSelectionRange(a+1,a+1);
+    textarea.setSelectionRange(cursorPosition+1,cursorPosition+1);
   } else
   switch (id){
     case "Backspace":
-        let a = textarea.selectionStart;
-        if(a != 0){
+        let BackspaceSelStart = textarea.selectionStart;
+        if(BackspaceSelStart != 0){
             textarea.value = textarea.value.substring(0,textarea.selectionStart-1)+textarea.value.substring(textarea.selectionEnd);
-            textarea.setSelectionRange(a-1,a-1);
+            textarea.setSelectionRange(BackspaceSelStart-1,BackspaceSelStart-1);
         }
         break;
     case "Delete":
-        let b = textarea.selectionEnd;
-        if(b != textarea.value.length){
+        let DeleteSelEnd = textarea.selectionEnd;
+        if(DeleteSelEnd != textarea.value.length){
             textarea.value = textarea.value.substring(0,textarea.selectionStart)+textarea.value.substring(textarea.selectionEnd+1);
-            textarea.setSelectionRange(b,b);
+            textarea.setSelectionRange(DeleteSelEnd,DeleteSelEnd);
         } 
         break;
     case "Enter":
-        let c = textarea.selectionEnd;
+        let EnterSelEnd = textarea.selectionEnd;
         textarea.value = `${textarea.value.substring(0,textarea.selectionStart)}${`\n`}${textarea.value.substring(textarea.selectionEnd)}`
-        textarea.setSelectionRange(c+1,c+1);
+        textarea.setSelectionRange(EnterSelEnd+1,EnterSelEnd+1);
         break;
     case "ArrowLeft":
         if(getCursorPosition(textarea) != 0){
@@ -103,14 +103,14 @@ function toDown(id) {
         textarea.setSelectionRange(textarea.value.length,textarea.value.length);
         break;
     case "Tab":
-        let d = textarea.selectionEnd;
+        let TabSelEnd = textarea.selectionEnd;
         textarea.value = `${textarea.value.substring(0,textarea.selectionStart)}${`\t`}${textarea.value.substring(textarea.selectionEnd)}`
-        textarea.setSelectionRange(d+1,d+1);
+        textarea.setSelectionRange(TabSelEnd+1,TabSelEnd+1);
         break;
     case "Space":
-        let e = textarea.selectionEnd;
+        let SpaceSelEnd = textarea.selectionEnd;
         textarea.value = `${textarea.value.substring(0,textarea.selectionStart)}${` `}${textarea.value.substring(textarea.selectionEnd)}`
-        textarea.setSelectionRange(e+1,e+1);
+        textarea.setSelectionRange(SpaceSelEnd+1,SpaceSelEnd+1);
         break;
   }
   
