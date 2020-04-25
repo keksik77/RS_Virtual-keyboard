@@ -1,0 +1,125 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    min-width: 800px;
+}
+
+.textarea {
+    display: block;
+    width: 800px;
+    height: 300px;
+    margin: 0 auto 10px;
+    padding: 10px;
+    font-size: 18px;
+    color: black;
+    background: lightsteelblue;
+}
+
+.keyboard {
+    display: flex;
+    flex-wrap: wrap;
+    width: 746px;
+    border-radius: 0 0 15px 15px;
+    margin: 0 auto;
+    padding: 21px;
+    background: linear-gradient(to bottom, #A4A4A4,#424242 );
+    box-shadow: 0px 9px 10px 1px darkgrey;
+}
+
+.button-small {
+    width: 40px;
+    box-shadow: 0px 1px 2px 0.5px #E2A9F3;
+    height: 40px;
+    background: #424242;
+    padding-top: 10px;
+    text-align: center;
+    margin: 0 0 7px 6px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 19px;
+    font-family: Arial;
+    transition: border-radius .3s, background-color .3s, font-size 0.3s,transform 0.3s, color 0.3s, box-shadow 1s;
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.space {
+    width: 330px;
+    background-color: #585858;
+    box-shadow: 0px 1px 2px 0.5px #D8F781;
+}
+
+.shift-right, .shift-left{
+    width: 116px;
+    box-shadow: 0px 1px 2px 0.5px #A9F5F2;
+}
+
+.ctrl, .alt, .win, .arrow {
+    box-shadow: 0px 1px 2px 0.5px #A9F5F2;
+}
+
+.ent {
+    width: 86px;
+    box-shadow: 0px 1px 2px 0.5px #A9F5F2;
+}
+
+.capslock, .backspace {
+    width: 100px;
+    box-shadow: 0px 1px 2px 0.5px #A9F5F2;
+}
+
+.tab {
+    width: 50px;
+    box-shadow: 0px 1px 2px 0.5px #A9F5F2;
+}
+
+.del {
+    width: 44px;
+    box-shadow: 0px 1px 2px 0.5px #A9F5F2;
+}
+
+.active {
+    background-color: #FFFF00;
+    border-radius: 2px;
+    font-size: 18px;
+    transform: scale(0.9, 0.9);
+    color: gray;
+}
+
+#ArrowUp{
+    height: 19px;
+    padding-top: 0;
+}
+
+#ArrowDown{
+    height: 19px;
+    padding-top: 0;
+    margin-left: -40px;
+    margin-top: 21px;
+}
+
+.about{
+    display: block;
+    text-align: center;
+    margin-top: 25px;
+}
+
+.light{
+    box-shadow:  0px 1px 2px 0.5px black;
+}
+
+#MetaLeft{
+    font-size: 10px;
+}
+
+#MetaLeft:after{
+    content: "☀";
+    font-size: 16px;
+    font-weight: 100;
+}

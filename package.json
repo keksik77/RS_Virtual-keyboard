@@ -1,0 +1,26 @@
+{
+  "name": "RS_Virtual-keyboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keksik77/RS_Virtual-keyboard.git"
+  },
+  "keywords": [],
+  "author": "keksik77",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/keksik77/RS_Virtual-keyboard/issues"
+  },
+  "homepage": "https://github.com/keksik77/RS_Virtual-keyboard#readme",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-plugin-import": "^2.20.2"
+  }
+}
